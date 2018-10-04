@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <%= render "layouts/header" %>
+    <% if flash.any? %>
+      <% flash.each do |type, msg| %>
+      <div class="alert alert-<%= type %>">
+        <div><%= msg %></div>
+      </div>
+      <% end %>
+    <% end %>
     <%= yield %>
+    <%= debug session[:user_id] if Rails.env == "development" %>
+    <%= render "layouts/footer" %>
   </body>
 </html>
