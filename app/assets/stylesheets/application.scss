@@ -1,4 +1,17 @@
 @import "bootstrap";
+
+.avatar_picture{
+	img{
+		width: 100%;
+	}
+}
+
+.paginate{
+	nav{
+		display: inline-block;
+	}
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
