@@ -7,6 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
+10.times do |n|
+		User.create!(
+		name: Faker::Pokemon.name,
+		email: Faker::Internet.unique.email,
+		password: "1234"
+	)
+end
+
 
 users = User.all
 user = users.first
