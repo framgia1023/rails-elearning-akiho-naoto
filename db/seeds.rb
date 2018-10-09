@@ -7,9 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
-10.times do |n|
-	User.create!(
-		name: Faker::Name.name,
-		email: Faker::Internet.unique.email
-		)
-end
+
+users = User.all
+user = users.first
+following = users[2..5]
+followers = users[2..5]
+
+following.each { |followed| user.follow(followed) }
+following.each { |follower| follower.follow(user) }
