@@ -1,5 +1,15 @@
 <div class="container">
-	<h1 class="p-3"><em>Create Category</em></h1>
+	<div class="row">
+	<div class="col-lg-6">
+		<h1 class="mt-3"><em>Manage Categories</em></h1>
+	</div>
+	<div class="col-lg-6">
+		<%= link_to "Back", admin_categories_path, class: "btn btn-outline-secondary float-right mt-3" %>
+	</div>	
+	</div>
+</div>
+
+<div class="container">
 	<div class="col-lg-8 offset-lg-2">
 		<%= form_for @category do |f| %>
 		
