@@ -1,0 +1,23 @@
+<div class="container">
+	<h1 class="p-3"><em>Create Category</em></h1>
+	<div class="col-lg-8 offset-lg-2">
+		<%= form_for @category do |f| %>
+		
+			<div class="form-group">
+			<%= f.label "Title" %>
+			<%= f.text_field :title, class: "form-control", placeholder: "Enter title of new category" %>		
+			</div>
+
+			<div class="form-group">
+				<%= f.label "Description" %>
+				<br>
+				<%= f.text_area :discription, class: "form-control", placeholder: "Enter discription new category", "rows" => 5 %>			
+			</div>
+		
+			<div class="form-group">
+				<%= f.submit "Create Category", class: "btn btn-outline-secondary btn-block" %>			
+			</div>
+	
+		<% end %>
+	</div>	
+</div>
