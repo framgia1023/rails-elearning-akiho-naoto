@@ -22,22 +22,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Daily 5</td>
-			<td style="word-wrap:break-word;">brabrabra</td>
-			<td class="text-center"><%= link_to "Add idiom", "#" %> | <%= link_to "Edit", "#" %> | <%= link_to "Delete", "#" %></td>
-		</tr>
-		<tr>
-			<td>Basic 10</td>
-			<td style="word-wrap:break-word;">brabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabrabravbrabrabrabrabrabrabrabrabra</td>
-			<td class="text-center"><%= link_to "Add idiom", "#" %> | <%= link_to "Edit", "#" %> | <%= link_to "Delete", "#" %></td>
-		</tr>
-		<tr>
-			<td>Advanced 10</td>
-			<td style="word-wrap:break-word;">brabrabra</td>
-			<td class="text-center"><%= link_to "Add idiom", "#" %> | <%= link_to "Edit", "#" %> | <%= link_to "Delete", "#" %></td>
-		</tr>
+			<% @categories.each do |category| %>
+				<tr>
+					<td><%= category.title %></td>
+					<td class="description"><%= category.description %></td>
+					<td class="text-center"><%= link_to "Add idiom", "#" %> | <%= link_to "Edit", edit_admin_category_path(category) %> | <%= link_to "Delete", admin_category_path(category),method: :delete %></td>
+				</tr>
+			<% end %>
 	</tbody>
 </table>
+	<div class="container paginate text-center">
+		<%= will_paginate %>
+	</div>
 	
 </div>
