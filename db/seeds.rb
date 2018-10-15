@@ -15,6 +15,15 @@ User.create!(
 	admin: true
 	)
 
+User.create!(
+	name: "Naoto Seki",
+	email: "sekinyam@gmail.com",
+	password: "1234",
+	password_confirmation: "1234",
+	admin: true
+	)
+
+
 10.times do |n|
 		User.create!(
 		name: Faker::Pokemon.name,
