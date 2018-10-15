@@ -24,9 +24,9 @@
 	<tbody>
 			<% @categories.each do |category| %>
 				<tr>
-					<td><%= category.title %></td>
-					<td class="description"><%= category.description %></td>
-					<td class="text-center"><%= link_to "Add idiom", "#" %> | <%= link_to "Edit", edit_admin_category_path(category) %> | <%= link_to "Delete", admin_category_path(category),method: :delete %></td>
+					<td><%= link_to category.title, admin_category_words_path(category.id) %></td>
+					<td class="long-content"><%= category.description %></td>
+					<td class="text-center"><%= link_to "Add idiom", new_admin_category_word_path(category_id: category) %> | <%= link_to "Edit", edit_admin_category_path(category) %> | <%= link_to "Delete", admin_category_path(category),method: :delete %></td>
 				</tr>
 			<% end %>
 	</tbody>

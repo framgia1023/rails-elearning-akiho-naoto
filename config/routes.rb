@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :categories, only: [:index, :show]  
   namespace :admin do
-  	resources :categories
+  	resources :categories do
+      resources :words
+    end
   end
 
   root "static_pages#home"
