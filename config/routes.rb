@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :categories, only: [:index, :show]  
   namespace :admin do
+    resources :users
   	resources :categories do
       resources :words
     end
