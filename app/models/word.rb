@@ -1,6 +1,10 @@
 class Word < ApplicationRecord
+
 	belongs_to :category
 	has_many :choices, dependent: :destroy
+	has_many :answers
+	has_many :lessons, through: :answers
+
 	accepts_nested_attributes_for :choices
 	validates :word, presence: true, length: { minimum: 1, maximum: 50 }
 	validate :check_box
