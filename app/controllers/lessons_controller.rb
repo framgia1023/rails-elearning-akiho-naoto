@@ -12,9 +12,9 @@ class LessonsController < ApplicationController
 	def show
 		@lesson = Lesson.find(params[:id])
 		choices = @lesson.answers.collect{ |a| a.choice_id }
-		score = Choice.find(choices).collect{ |c| c.correct }.count(true)
+		@score = Choice.find(choices).collect{ |c| c.correct }.count(true)
 		if @lesson.result == nil
-			@lesson.update(result: score)
+			@lesson.update(result: @score)
 		end
 		# @words = answers.collect{ |a| a.word_id }
 		
