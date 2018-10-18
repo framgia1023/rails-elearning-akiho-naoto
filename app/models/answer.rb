@@ -4,7 +4,7 @@ class Answer < ApplicationRecord
 	belongs_to :choice
 
 	def result_word(word_id)
-		Word.find(word_id)		
+		Word.find(word_id).word		
 	end
 
 	def result_choice(choice_id)
