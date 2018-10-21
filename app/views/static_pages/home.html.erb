@@ -1,7 +1,76 @@
-<div class="container">
-<h1>Home</h1>
-<p>This is Home Page!</p>
-<p>Naoto san will create awsome design for this page soon!</p>
-</div>
+<% if logged_in? %>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<h2 class="mt-3"><em>Dashboard</em></h2>
+				<div class="media mt-3">
+					<div class="row">
+						<div class="col-lg-6">
+							<% if current_user.picture? %>
+								<div class="avatar_picture">
+									<%= image_tag current_user.picture.url %>
+								</div>
+							<% else %>
+								<div class="avatar_picture">
+									<%= image_tag "/images/no_image-1.png", alt: "no images" %>
+								</div>
+							<% end %>	
+						</div>
+						<div class="col-lg-6">
+							 <div class="media-body">
+							    <h5 class="mt-0"><%= current_user.name %></h5>
+							    <%= link_to "Learned #{pluralize(learned_words.count, "word")}", user_words_path(user_id: current_user) %>
+							 </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8">
+				<div class="container">
+					<div class="card mt-3">
+						<div class="card-header">Activities</div>
+						<div class="card-body">
+							<% @activities.each do |activity| %>
+								<div class="row mt-3">
+									<div class="col-lg-3">
+										<div class="text-center">
+											<% if activity.user.picture? %>
+											<div class="avatar_picture">
+												<%= image_tag activity.user.picture.url %>
+											</div>
+											<% else %>
+												<div class="avatar_picture">
+													<%= image_tag "/images/no_image-1.png", alt: "no images" %>
+												</div>
+											<% end %>
+										</div>
+									</div>
+									<div class="col-lg-9">
+										<% if activity.action_type == "Lesson" %>
+											<h5><%= link_to activity.action.user.name, user_path(activity.action.user_id) %> learned <%= activity.action.result %> of <%= activity.action.category.words.count %> words in <%= link_to activity.action.category.title, categories_path %></h5>
+											<small><%= time_ago_in_words(activity.created_at) %> ago</small>
+										<% elsif activity.action_type == "Relationship" %>
+											<h5><%= link_to activity.action.follower.name, user_path(activity.action.follower.id) %> followed <%= link_to activity.action.followed.name, user_path(activity.action.followed.id) %></h5>
+											<small><%= time_ago_in_words(activity.created_at) %> ago</small>
+										<% end %>
+									</div>
+								</div>
+							<% end %>
+							<div class="container paginate text-center">
+								<%= will_paginate @activities%>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% else %>
+	<div class="container">
+	<h1>Home</h1>
+	<p>This is Home Page!</p>
+	<p>Naoto san will create awsome design for this page soon!</p>
+	</div>
+<% end %>
 
 
