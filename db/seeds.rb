@@ -33,10 +33,3 @@ User.create!(
 end
 
 
-users = User.all
-user = users.first
-following = users[2..5]
-followers = users[2..5]
-
-following.each { |followed| user.follow(followed) }
-following.each { |follower| follower.follow(user) }

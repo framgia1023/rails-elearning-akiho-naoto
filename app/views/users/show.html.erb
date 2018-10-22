@@ -27,6 +27,8 @@
 							<%= render "follow", user: @user %>
 							<% end %>
 						</div>
+						<% else %>
+							 <div class="text-center"><%= link_to "Learned #{pluralize(@answers.count, "word")}", user_words_path(user_id: current_user) %></div>
 						<% end %>
 						<div class="text-center">
 							<div class="row">
@@ -66,15 +68,15 @@
 									</div>
 									<div class="col-lg-9">
 										<% if activity.action_type == "Lesson" %>
-											<% if activity.action.user == current_user %>
-												<h5><%= link_to activity.action.user.name, user_path(activity.action.user_id) %> learned <%= activity.action.result %> of <%= activity.action.category.words.count %> words in <%= link_to activity.action.category.title, lesson_path(Lesson.find_by(user_id: activity.action.user.id, category_id: activity.action.category.id)) %></h5>
+											<% if current_user?(activity.action.user) %>
+												<h5><%= link_to action_user(activity.action.user), user_path(activity.action.user_id) %> learned <%= activity.action.result %> of <%= activity.action.category.words.count %> words in <%= link_to activity.action.category.title, lesson_path(Lesson.find_by(user_id: activity.action.user.id, category_id: activity.action.category.id)) %></h5>
 												<small><%= time_ago_in_words(activity.created_at) %> ago</small>
 											<% else %>
 												<h5><%= link_to activity.action.user.name, user_path(activity.action.user_id) %> learned <%= activity.action.result %> of <%= activity.action.category.words.count %> words in <%= link_to activity.action.category.title, "#" %></h5>
 												<small><%= time_ago_in_words(activity.created_at) %> ago</small>
 											<% end %>
 										<% elsif activity.action_type == "Relationship" %>
-											<h5><%= link_to activity.action.follower.name, user_path(activity.action.follower.id) %> followed <%= link_to activity.action.followed.name, user_path(activity.action.followed.id) %></h5>
+											<h5><%= link_to action_user(activity.action.follower), user_path(activity.action.follower.id) %> followed <%= link_to action_user(activity.action.followed), user_path(activity.action.followed.id) %></h5>
 											<small><%= time_ago_in_words(activity.created_at) %> ago</small>
 										<% end %>
 									</div>
