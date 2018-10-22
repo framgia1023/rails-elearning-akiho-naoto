@@ -19,7 +19,7 @@
 						<div class="col-lg-6">
 							 <div class="media-body">
 							    <h5 class="mt-0"><%= current_user.name %></h5>
-							    <%= link_to "Learned #{pluralize(learned_words.count, "word")}", user_words_path(user_id: current_user) %>
+							    <%= link_to "Learned #{pluralize(@answers.count, "word")}", user_words_path(user_id: current_user) %>
 							 </div>
 						</div>
 					</div>

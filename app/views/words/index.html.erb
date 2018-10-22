@@ -18,7 +18,7 @@
 						<div class="col-lg-6">
 							 <div class="media-body">
 							    <h5 class="mt-0"><%= current_user.name %></h5>
-							    <%= link_to "Learned #{pluralize(learned_words.count, "word")}", user_words_path(user_id: current_user) %>
+							    <%= link_to "Learned #{pluralize(@answers.count, "word")}", user_words_path(user_id: current_user) %>
 							 </div>
 						</div>
 					</div>
@@ -29,26 +29,35 @@
 					<div class="card mt-3">
 						<div class="card-header">Words Learned</div>
 						<div class="card-body">
-								<div class="row">
-									<div class="col-lg-6 offset-lg-3">
 										<table class="ml-auto mr-auto">
 											<thead>
 												<tr>
 													<th class="p-3">Word</th>
-													<th class="p-3">Answer</th>
+													<th class="p-3">Correct Answer</th>
+													<th class="p-3">Your Answer</th>
+													<th class="p-3">Correct</th>
 												</tr>
 											</thead>
 											<tbody>
-											<% learned_words.each do |answer| %>
+											<% @answers.each do |answer| %>
 												<tr>
 													<td class="p-3"><%= answer.word.word %></td>
+													<td class="p-3"><%= Choice.find_by(word_id: answer.word_id, correct: true).choice %></td>
 													<td class="p-3"><%= answer.choice.choice %></td>
+													<td class="p-3">
+														<% if answer.result_choice(answer.choice_id).correct == true %>
+															<%= "○" %>
+														<% else %>
+															<%= "×" %>
+														<% end %>
+													</td>
 												</tr>
 											<% end %>
 											</tbody>
 										</table>
-									</div>
-								</div>
+							<div class="container paginate text-center">
+								<%= will_paginate @answers %>
+							</div>
 						</div>
 					</div>
 				</div>
