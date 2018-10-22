@@ -44,13 +44,7 @@
 													<td class="p-3"><%= answer.word.word %></td>
 													<td class="p-3"><%= Choice.find_by(word_id: answer.word_id, correct: true).choice %></td>
 													<td class="p-3"><%= answer.choice.choice %></td>
-													<td class="p-3">
-														<% if answer.result_choice(answer.choice_id).correct == true %>
-															<%= "○" %>
-														<% else %>
-															<%= "×" %>
-														<% end %>
-													</td>
+													<td class="p-3"><%= answer_correct?(answer.choice) %></td>
 												</tr>
 											<% end %>
 											</tbody>
