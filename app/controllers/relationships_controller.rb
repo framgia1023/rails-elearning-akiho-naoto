@@ -1,4 +1,12 @@
 class RelationshipsController < ApplicationController
+
+	def index
+		@user = User.find(params[:id])
+		@follower = @user.active_relationships
+		@follwer = @user.passive_relationships
+		
+	end
+
 	def create
 		@user = User.find(params[:followed_id])
 		current_user.follow(@user)
@@ -15,7 +23,7 @@ class RelationshipsController < ApplicationController
 
 	def destroy
 		@user = Relationship.find(params[:id]).followed
-		Activity.find_by(action_type: "Relationship", action_id: Relationship.find(params[:id])).destroy
+		# Activity.find_by(action_type: "Relationship", action_id: Relationship.find(params[:id])).destroy
 		current_user.unfollow(@user)
 
 
