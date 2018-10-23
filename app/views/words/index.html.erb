@@ -1,0 +1,60 @@
+<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<h2 class="mt-3"><em>Dashboard</em></h2>
+				<div class="media mt-3">
+					<div class="row">
+						<div class="col-lg-6">
+							<% if current_user.picture? %>
+								<div class="avatar_picture">
+									<%= image_tag current_user.picture.url %>
+								</div>
+							<% else %>
+								<div class="avatar_picture">
+									<%= image_tag "/images/no_image-1.png", alt: "no images" %>
+								</div>
+							<% end %>	
+						</div>
+						<div class="col-lg-6">
+							 <div class="media-body">
+							    <h5 class="mt-0"><%= current_user.name %></h5>
+							    <%= link_to "Learned #{pluralize(@answers.count, "word")}", user_words_path(user_id: current_user) %>
+							 </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8">
+				<div class="container">
+					<div class="card mt-3">
+						<div class="card-header">Words Learned</div>
+						<div class="card-body">
+										<table class="ml-auto mr-auto">
+											<thead>
+												<tr>
+													<th class="p-3">Word</th>
+													<th class="p-3">Correct Answer</th>
+													<th class="p-3">Your Answer</th>
+													<th class="p-3">Correct</th>
+												</tr>
+											</thead>
+											<tbody>
+											<% @answers.each do |answer| %>
+												<tr>
+													<td class="p-3"><%= answer.word.word %></td>
+													<td class="p-3"><%= Choice.find_by(word_id: answer.word_id, correct: true).choice %></td>
+													<td class="p-3"><%= answer.choice.choice %></td>
+													<td class="p-3"><%= answer_correct?(answer.choice) %></td>
+												</tr>
+											<% end %>
+											</tbody>
+										</table>
+							<div class="container paginate text-center">
+								<%= will_paginate @answers %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

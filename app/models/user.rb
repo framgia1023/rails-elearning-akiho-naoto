@@ -9,6 +9,7 @@ class User < ApplicationRecord
 									 dependent: :destroy
 	has_many :followers, through: :passive_relationships, source: :follower
 	has_many :lessons
+	has_many :activities
 
 	#has_many :categories, through: :lesson
 
@@ -32,6 +33,15 @@ class User < ApplicationRecord
 
 	def following?(other_user)
 		following.include?(other_user)		
+	end
+
+	def feed
+		following_ids = Relationship.all.collect{ |r| r.followed_id if r.follower_id == id}.compact
+		feed_ids = following_ids << id
+		Activity.where(user_id: feed_ids)
+		#following_ids = "Select followed_id FROM relationships WHERE follower_id = :user_id"
+		#Activity.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+		
 	end
 
 	private

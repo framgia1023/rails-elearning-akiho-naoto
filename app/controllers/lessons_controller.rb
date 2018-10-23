@@ -15,6 +15,8 @@ class LessonsController < ApplicationController
 		@score = Choice.find(choices).collect{ |c| c.correct }.count(true)
 		if @lesson.result == nil
 			@lesson.update(result: @score)
+			# Activity.create(user_id: @lesson.user_id, action: @lesson)
+			@lesson.create_activity(user_id: @lesson.user_id)
 		end
 		# @words = answers.collect{ |a| a.word_id }
 		

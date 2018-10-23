@@ -28,18 +28,11 @@
 						<tr>
 							<td class="p-1"><%= answer.result_word(answer.word_id) %></td>
 							<td class="p-1"><%= answer.result_choice(answer.choice_id).choice %></td>
-							<td class="p-1">
-								<% if answer.result_choice(answer.choice_id).correct == true %>
-									<%= "○" %>
-								<% else %>
-									<%= "×" %>
-								<% end %>
-							</td>
+							<td class="p-1"><%= answer_correct?(answer.choice) %></td>
 						</tr>
 						<% end %>
 					</tbody>
-				</table>
-				
+				</table>				
 			</div>
 			
 		</div>
