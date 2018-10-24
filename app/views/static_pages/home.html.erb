@@ -1,6 +1,6 @@
 <% if logged_in? %>
 	<div class="container">
-		<h2 class="mt-3"><em>Dashboard</em></h2>
+		<h1 class="mt-3"><em>Dashboard</em></h1>
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="container">
@@ -47,11 +47,11 @@
 									<div class="col-lg-3">
 										<div class="text-center">
 											<% if activity.user.picture? %>
-											<div class="avatar_picture">
+											<div class="avatar_picture image-round">
 												<%= image_tag activity.user.picture.url %>
 											</div>
 											<% else %>
-												<div class="avatar_picture">
+												<div class="avatar_picture image-round">
 													<%= image_tag "/images/no_image-1.png", alt: "no images" %>
 												</div>
 											<% end %>
@@ -83,10 +83,15 @@
 		</div>
 	</div>
 <% else %>
-	<div class="container">
-	<h1>Home</h1>
-	<p>This is Home Page!</p>
-	<p>Naoto san will create awsome design for this page soon!</p>
+	<div class="top-image" id="contents">
+		<div class="top-text-area">
+			<h1 class="top-text">Learn English.</h1>
+			<h1 class="top-text">Be foolish.</h1>
+			<p class="text-white m-0">Looking for an awesome way to learn English?</p>
+			<p class="text-white m-0">Sign up now and expand your own English expressions. </p>
+			<br><br><br><br><br><br><br>
+		</div>
+		<br>
 	</div>
 <% end %>
 
