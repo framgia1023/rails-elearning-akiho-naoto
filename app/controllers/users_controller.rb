@@ -16,7 +16,12 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@users = User.paginate(page: params[:page], per_page: 5)
+		if params[:search].empty?
+		 	@users = User.paginate(page: params[:page], per_page: 5)
+		else
+			@users = User.where("name LIKE ?", "%#{params[:search]}%").paginate(page: params[:page], per_page: 5)
+		end
+		# @users = User.paginate(page: params[:page], per_page: 5).search(params[:search])
 	end
 
 	def show
