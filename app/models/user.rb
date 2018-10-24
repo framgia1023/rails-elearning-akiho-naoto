@@ -45,6 +45,12 @@ class User < ApplicationRecord
 		
 	end
 
+	# def self.search(search)
+	# 	if search
+	# 		where("name LIKE ?", "%#{search}%")
+	# 	end		
+	# end
+
 	private
 		def picture_size
 			if picture.size > 5.megabytes

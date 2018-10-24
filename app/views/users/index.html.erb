@@ -1,5 +1,20 @@
 <div class="container">
 	<h1>Users List</h1>
+	<%= form_tag users_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+		<%= text_field_tag :search, nil, class: "form-control mr-sm-2", placeholder: "Search" %>
+		<%= submit_tag "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
+<!-- 	 <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+    <% end %>
+    <% if @users.empty? %>
+    <div class="row">
+		<div class="col-lg-6 offset-3">
+    	<h1 class="text-center">No User</h1>
+    	</div>
+    </div>
+    <% else %>
 	<div class="row">
 		<div class="col-lg-6 offset-3">
 			<div class="media mt-3 mb-3">
@@ -29,4 +44,5 @@
 	<div class="container paginate text-center">
 		<%= will_paginate %>
 	</div>
+	<% end %>
 </div>
