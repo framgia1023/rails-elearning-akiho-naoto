@@ -1,61 +1,61 @@
-<div class="categories-background">
-	<div class="container">
-		<h1 class="mt-3"><em>Categories</em></h1>
-		<ul class="nav nav-pills">
-  <li class="nav-item">
-  	<%= link_to "All", categories_path(status: :all), 
-  					   class: "nav-link #{'active' if params[:status] == 'all' || params[:status] == nil}" %>
-  </li>
-  <li class="nav-item">
-  	<%= link_to "Learned", categories_path(status: :learned), 
-  						   class: "nav-link #{'active' if params[:status] == 'learned'}" %>
-  </li>
-  </li>
-  <li class="nav-item">
-  	<%= link_to "Unlearned", categories_path(status: :unlearned),
-  							 class: "nav-link #{'active' if params[:status] == 'unlearned'}" %>
-  </li>
-</ul>
-  	 	<div class="row">
+<div>
+	<div class="categories-background m-0">
+		<div class="container">
+			<h1 class="mt-4"><em>Categories</em></h1>
+			<ul class="nav nav-pills mt-2 mb-2">
+				<li class="nav-item">
+					<%= link_to "All", categories_path(status: :all), 
+					class: "nav-link #{'active' if params[:status] == 'all' || params[:status] == nil}" %>
+				</li>
+				<li class="nav-item">
+					<%= link_to "Learned", categories_path(status: :learned), 
+					class: "nav-link #{'active' if params[:status] == 'learned'}" %>
+				</li>
+			</li>
+			<li class="nav-item">
+				<%= link_to "Unlearned", categories_path(status: :unlearned),
+				class: "nav-link #{'active' if params[:status] == 'unlearned'}" %>
+			</li>
+		</ul>
+		<div class="row">
 			<% @categories.each do |category| %>
-				<% if category.words.any? %>
-					<div class="col-lg-3 m-4">
-						<div class="container">
-						<div class="card card-rotate shadow" style="width: 18rem;">
-						  <div class="card-body">
-						    <h5 class="card-title"><%= category.title %></h5>
-						    <p class="card-text"><%= category.description %></p>
-						    <% if @learned_category.include?(category.id) %>
-						    	<%= link_to "See Result", lesson_path(Lesson.find_by(user_id: current_user, category_id: category.id)), class: "btn btn-outline-secondary" %>
-						    <% else %>
-							    <%= form_for @lesson do |f| %>
-							    	<div><%= hidden_field_tag :user_id, current_user.id %></div>
-									<div><%= hidden_field_tag :category_id, category.id %></div>
-									<%= f.submit "Learn", class: "btn btn-primary" %>
-							    <% end %>
-						    <% end %>
+			<% if category.words.any? %>
+			<div class="col-lg-3 m-4">
+				<div class="container">
+					<div class="card card-rotate shadow card-color" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title"><%= category.title %></h5>
+							<p class="card-text"><%= category.description %></p>
+							<% if @learned_category.include?(category.id) %>
+							<%= link_to "See Result", lesson_path(Lesson.find_by(user_id: current_user, category_id: category.id)), class: "btn btn-outline-secondary" %>
+							<% else %>
+							<%= form_for @lesson do |f| %>
+							<div><%= hidden_field_tag :user_id, current_user.id %></div>
+							<div><%= hidden_field_tag :category_id, category.id %></div>
+							<%= f.submit "Learn", class: "btn btn-primary" %>
+							<% end %>
+							<% end %>
 
-						  </div>
-						</div>	
-							
 						</div>
-				
-					</div>
-				<% end %>
+					</div>	
+				</div>
+			</div>
+			<% end %>
 			<% end %>
 		</div>
-		<div class="container paginate text-center">
+		<div class="container paginate text-center mt-5">
 			<%= will_paginate %>
 		</div>
 	</div>
-  </div>
-		
 </div>
+</div>
+</div>
+
 <script>
 	$('.card-rotate').each(function(){
 		var rnd = Math.floor(Math.random()*20) - 10;
 		$(this).css('transform', 'rotate(' + rnd + 'deg)');
-		});
+	});
 </script>
 
 

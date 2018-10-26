@@ -6,7 +6,7 @@ class Word < ApplicationRecord
 	has_many :lessons, through: :answers
 
 	accepts_nested_attributes_for :choices
-	validates :word, presence: true, length: { minimum: 1, maximum: 50 }
+	validates :word, presence: true, length: { minimum: 1, maximum: 150 }
 	validate :check_box
 
 	private
