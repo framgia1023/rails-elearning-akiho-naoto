@@ -3,9 +3,20 @@ class LessonsController < ApplicationController
 
 	def create
 		@lesson = Lesson.new(lesson_params)
+<<<<<<< Updated upstream
 		if @lesson.save
+=======
+		lesson = Lesson.find_by(user_id: current_user, category_id: params[:category_id])
+		if lesson.nil?
+			if @lesson.save
+			flash[:success] = "Successfully started!"
+>>>>>>> Stashed changes
 			redirect_to new_lesson_answer_url(@lesson)
+			end
+		else
+			redirect_to categories_url			
 		end
+		
 	end
 
 	def show

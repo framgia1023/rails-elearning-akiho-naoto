@@ -126,14 +126,12 @@ a{
 	word-wrap:break-word;
 }
 
-
-footer {
-	background-color: #500E17;
-	height: 56px;
-	width: 100%;
- 	position: fixed;
- 	bottom: 0;
+.signature {
+	font-family: 'Covered By Your Grace', cursive;
+	color: #500E17;
+	
 }
+
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
