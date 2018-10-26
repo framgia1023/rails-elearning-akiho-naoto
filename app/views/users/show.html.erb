@@ -1,5 +1,6 @@
-<div class="container">
-	<h1>User Profile</h1>
+<div class="container mt-4">
+
+	<h1 class="text-white">User Profile</h1>
 	<div class="row">
 		<div class="col-lg-4">
 			<div class="container">
@@ -48,12 +49,12 @@
 		</div>
 		<div class="col-lg-8">
 				<div class="container">
-					<div class="card mt-3">
+					<div class="card">
 						<div class="card-header">Activities</div>
 						<div class="card-body">
 							<% @activities.each do |activity| %>
 								<div class="row mt-3">
-									<div class="col-lg-3">
+									<div class="col-lg-2">
 										<div class="text-center">
 											<% if activity.user.picture? %>
 											<div class="avatar_picture">
@@ -66,7 +67,7 @@
 											<% end %>
 										</div>
 									</div>
-									<div class="col-lg-9">
+									<div class="col-lg-10">
 										<% if activity.action_type == "Lesson" %>
 											<% if current_user?(activity.action.user) %>
 												<h5><%= link_to action_user(activity.action.user), user_path(activity.action.user_id) %> learned <%= activity.action.result %> of <%= activity.action.category.words.count %> words in <%= link_to activity.action.category.title, lesson_path(Lesson.find_by(user_id: activity.action.user.id, category_id: activity.action.category.id)) %></h5>

@@ -1,9 +1,9 @@
 @import "bootstrap";
+
 * {
 margin: 0px;
 padding: 0px;
 }
-
 
 html, body { height: 100%; }
 
@@ -11,23 +11,11 @@ header{
 	height: 20%;
 }
 
-.card{
-	background-color: #F8DEE3;
-}
-
 
 .navbar {
 	background-color: #500E17;
 }
 
-.navbar-fixed-top {
-  position: fixed;
-  top: 0;
-  right:0;
-  left: 0;
-  z-index: 1000;
-  margin-bottom: 0;
-}
 
 nav {
 	  a {
@@ -36,17 +24,6 @@ nav {
 		}
 } 
 
-body,
-#wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-#contents{
-     padding-top: 56px;
-     padding-bottom: -56px;
-}
 
 h1{
 	font-family: 'Covered By Your Grace', cursive;
@@ -58,22 +35,65 @@ h1{
     font-size: 100px;
 }
 
-.top-image{
+.link-white{
+	color: white;
+}
+
+body.static_pages{
 	background-image: url("/images/top.jpg");
 	background-size: cover;
     position: relative;
     vertical-align: bottom;
 }
 
+.category-table{
+	background-color: #F4EDE6;
+}
+
+body.categories{
+		background-image: url("/images/corkboard.jpg");
+		background-size: 100% auto;
+	}
+
+
+body.answers{
+		background-image: url("/images/chalkboard.jpg");
+		background-size: 100% auto;
+	}
+
+body.lessons{
+		background-image: url("/images/chalkboard.jpg");
+		background-size: 100% auto;
+	}
+
+
+body.sessions{
+		background-image: url("/images/library.jpg");
+		background-size: 100% auto;
+	}
+
+body.users{
+		background-image: url("/images/library.jpg");
+		background-size: 100% auto;
+	}
+
+.jumbotron{
+	background: rgba(200, 200, 200, 0.5);
+}
+
+
+.card-color{
+		background-color: #F8DEE3;
+	}
+
+.card-clear{
+	background: rgba(200, 200, 200, 0.5);
+	}
+
 .image-round{
 	border-radius: 50%;
 }
 
-.categories-background{
-	background-image: url("/images/corkboard.jpg");
-	background-size: cover;
-    position: relative;
-}
 
 .top-text-area{
 	padding-top: 50px;
@@ -110,7 +130,9 @@ a{
 footer {
 	background-color: #500E17;
 	height: 56px;
- 	margin-top: auto;
+	width: 100%;
+ 	position: fixed;
+ 	bottom: 0;
 }
 
 /*

@@ -1,26 +1,26 @@
 <div class="container">
-		<h1 class="mt-3"><em><%= @category.title %></em></h1>
+		<h1 class="mt-3 text-white"><em><%= @category.title %></em></h1>
 </div>
 
 <div class="container">
 	<div class="row">
 		<div class="col-lg-6 offset-lg-3">
-			<div class="jumbotron p-3">
-				<h3 class="text-right"><%= "#{@lesson.words.count + 1} of #{@category.words.count}" %></h3>
+			<div class="container p-3">
+				<h3 class="text-right text-white"><%= "#{@lesson.words.count + 1} of #{@category.words.count}" %></h3>
 				<table class="ml-auto mr-auto">
 					<thead>
 						<tr>
-							<th  class="text-center"><b><%= @lesson.next_word.word %></b></th>
+							<th  class="text-center text-white"><b><%= @lesson.next_word.word %></b></th>
 						</tr>
 					</thead>
 					<tbody>
 						<% @lesson.next_word.choices.each do |choice| %>
 						<tr>
-							<td>
+							<td class="text-center">
 								<%= form_for([:lesson, @answer]) do |f| %>
-						    	<div><%= hidden_field_tag :word_id, @lesson.next_word.id %></div>
+						    	<div class="text-white"><%= hidden_field_tag :word_id, @lesson.next_word.id %></div>
 								<div><%= hidden_field_tag :choice_id, choice.id %></div>
-								<%= f.submit choice.choice, class: "btn btn-outline-secondary m-1" %>
+								<%= f.submit choice.choice, class: "btn btn-secondary btn-block m-1" %>
 								<% end %>
 
 								<%#link_to choice.choice, lesson_answers_path, method: :post, class: "btnoutline-secondary" %> 
